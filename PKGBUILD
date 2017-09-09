@@ -3,7 +3,7 @@
 # Contributor: Eric Belanger <eric@archlinux.org>
 # Contributor: SmackleFunky <smacklefunky@optusnet.com.au>
 
-pkgname=ltris
+pkgname=ltris-nofs
 pkgver=1.0.19
 pkgrel=2
 pkgdesc="A tetris clone where you have a bowl with blocks falling down"
@@ -14,18 +14,24 @@ depends=('sdl_mixer')
 backup=('var/games/ltris.hscr')
 install=$pkgname.install
 changelog=$pkgname.changelog
-source=(http://downloads.sourceforge.net/lgames/$pkgname-$pkgver.tar.gz)
-sha256sums=('8f6a9e7719d22004aee153db29ffd9ca41c7a6cd87fc791591994eecc2e625a1')
+source=("http://downloads.sourceforge.net/lgames/ltris-$pkgver.tar.gz"
+        'no-fullscreen-or-screenshot.patch')
+sha256sums=('8f6a9e7719d22004aee153db29ffd9ca41c7a6cd87fc791591994eecc2e625a1'
+            'f6db6d01117db46da85897e1a85c0933bfa42787112153a35f1b513588fd8e20')
 
 build() {
-  cd ${srcdir}/${pkgname}-${pkgver}
+  cd ${srcdir}/ltris-${pkgver}
+
+  cd src
+  patch < ../../no-fullscreen-or-screenshot.patch
+  cd ..
 
   ./configure --prefix=/usr --localstatedir=/var/games
   make
 }
 
 package() {
-  cd ${srcdir}/${pkgname}-${pkgver}
+  cd ${srcdir}/ltris-${pkgver}
 
   make DESTDIR=${pkgdir} install
 
