@@ -18,7 +18,7 @@ conflicts=('ltris')
 source=("http://downloads.sourceforge.net/lgames/ltris-$pkgver.tar.gz"
         'no-fullscreen-or-screenshot.patch')
 sha256sums=('8f6a9e7719d22004aee153db29ffd9ca41c7a6cd87fc791591994eecc2e625a1'
-            'f6db6d01117db46da85897e1a85c0933bfa42787112153a35f1b513588fd8e20')
+            'b6354009c5ce78700af90c789f0413da0baa253d08f3ab778694b9bc3d47b586')
 
 build() {
   cd ${srcdir}/ltris-${pkgver}
