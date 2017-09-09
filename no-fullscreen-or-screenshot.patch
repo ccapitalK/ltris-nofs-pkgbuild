@@ -1,32 +1,3 @@
---- tetris.c	2017-09-09 16:24:09.903891093 +1000
-+++ tetris.c	2017-09-09 16:24:39.824219306 +1000
-@@ -387,16 +387,16 @@
-                                     if ( bowls[i] && !bowls[i]->game_over )
-                                         bowl_finish_game( bowls[i] );
-                             break;
--                         case SDLK_f:
--                             /* switch fullscreen */
--                            config.fullscreen = !config.fullscreen;
--                            set_video_mode( std_video_mode( config.fullscreen ) );
--                            FULL_DEST( sdl.screen ); FULL_SOURCE( offscreen ); blit_surf();
--                            refresh_screen( 0, 0, 0, 0 );
--                        case SDLK_TAB:
--                            sprintf( sshot_str, "ss%i.bmp", screenshot_id++ );
--                            SDL_SaveBMP( sdl.screen, sshot_str );
--                            break;
-+                        // case SDLK_f:
-+                        //     /* switch fullscreen */
-+                        //    config.fullscreen = !config.fullscreen;
-+                        //    set_video_mode( std_video_mode( config.fullscreen ) );
-+                        //    FULL_DEST( sdl.screen ); FULL_SOURCE( offscreen ); blit_surf();
-+                        //    refresh_screen( 0, 0, 0, 0 );
-+                        //case SDLK_TAB:
-+                        //    sprintf( sshot_str, "ss%i.bmp", screenshot_id++ );
-+                        //    SDL_SaveBMP( sdl.screen, sshot_str );
-+                        //    break;
-                         default: break;
-                     }
-                     break;
 --- bowl.c	2017-09-09 16:28:47.353607616 +1000
 +++ bowl.c	2017-09-09 16:29:02.897112145 +1000
 @@ -333,7 +333,7 @@
@@ -218,3 +189,72 @@
  {
      last_time = SDL_GetTicks();
  }
+--- tetris.c	2017-09-09 16:48:57.644021059 +1000
++++ tetris.c	2017-09-09 16:49:22.964321250 +1000
+@@ -107,13 +107,13 @@
+                         ret = 1; go_on = 0;
+                         break;
+                     }
+-					else
+-					if ( event.key.keysym.sym == SDLK_f ) {
+-						config.fullscreen = !config.fullscreen;
+-						set_video_mode( std_video_mode( config.fullscreen ) );
+-						draw_confirm_screen( font, buffer, str );
+-						refresh_screen( 0, 0, 0, 0 );
+-					}
++					//else
++					//if ( event.key.keysym.sym == SDLK_f ) {
++					//	config.fullscreen = !config.fullscreen;
++					//	set_video_mode( std_video_mode( config.fullscreen ) );
++					//	draw_confirm_screen( font, buffer, str );
++					//	refresh_screen( 0, 0, 0, 0 );
++					//}
+                 }
+                 else
+                     if (event.key.keysym.sym == SDLK_ESCAPE) {
+@@ -387,16 +387,16 @@
+                                     if ( bowls[i] && !bowls[i]->game_over )
+                                         bowl_finish_game( bowls[i] );
+                             break;
+-                         case SDLK_f:
+-                             /* switch fullscreen */
+-                            config.fullscreen = !config.fullscreen;
+-                            set_video_mode( std_video_mode( config.fullscreen ) );
+-                            FULL_DEST( sdl.screen ); FULL_SOURCE( offscreen ); blit_surf();
+-                            refresh_screen( 0, 0, 0, 0 );
+-                        case SDLK_TAB:
+-                            sprintf( sshot_str, "ss%i.bmp", screenshot_id++ );
+-                            SDL_SaveBMP( sdl.screen, sshot_str );
+-                            break;
++                        // case SDLK_f:
++                        //     /* switch fullscreen */
++                        //    config.fullscreen = !config.fullscreen;
++                        //    set_video_mode( std_video_mode( config.fullscreen ) );
++                        //    FULL_DEST( sdl.screen ); FULL_SOURCE( offscreen ); blit_surf();
++                        //    refresh_screen( 0, 0, 0, 0 );
++                        //case SDLK_TAB:
++                        //    sprintf( sshot_str, "ss%i.bmp", screenshot_id++ );
++                        //    SDL_SaveBMP( sdl.screen, sshot_str );
++                        //    break;
+                         default: break;
+                     }
+                     break;
+--- manager.c	2017-09-09 16:56:51.836302976 +1000
++++ manager.c	2017-09-09 16:57:37.660178225 +1000
+@@ -504,11 +504,11 @@
+ 			if ( cur_menu->cur_item == 0 || ( cur_menu->cur_item->type != ITEM_EDIT && cur_menu->cur_item->type != ITEM_KEY ) )
+ 				if ( event.type == SDL_KEYUP )
+ 					if ( event.key.keysym.sym == SDLK_f ) {
+-						config.fullscreen = !config.fullscreen;
+-						set_video_mode( std_video_mode( config.fullscreen ) );
+-						FULL_DEST( sdl.screen ); FULL_SOURCE( mbkgnd ); blit_surf();
+-					    chart_show( chart_set_query_id( chart_id ), cx, cy, cw, ch );
+-						refresh_screen( 0, 0 ,0, 0 );
++					//	config.fullscreen = !config.fullscreen;
++					//	set_video_mode( std_video_mode( config.fullscreen ) );
++					//	FULL_DEST( sdl.screen ); FULL_SOURCE( mbkgnd ); blit_surf();
++					//    chart_show( chart_set_query_id( chart_id ), cx, cy, cw, ch );
++					//	refresh_screen( 0, 0 ,0, 0 );
+ 					}
+ 			/* check if clicked on highscore */
+ 			if ( event.type == SDL_MOUSEBUTTONUP ) 

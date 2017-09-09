@@ -14,6 +14,7 @@ depends=('sdl_mixer')
 backup=('var/games/ltris.hscr')
 install=$pkgname.install
 changelog=$pkgname.changelog
+conflicts=('ltris')
 source=("http://downloads.sourceforge.net/lgames/ltris-$pkgver.tar.gz"
         'no-fullscreen-or-screenshot.patch')
 sha256sums=('8f6a9e7719d22004aee153db29ffd9ca41c7a6cd87fc791591994eecc2e625a1'
